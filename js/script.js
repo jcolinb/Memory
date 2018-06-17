@@ -1,12 +1,16 @@
-board = document.getElementById('container');
-start = document.getElementById('start');
+const Board = document.getElementById('container');
+const Start = document.getElementById('start');
+const Deck  = document.getElementsByClassName('.card');
 
-start.addEventListener('click',propogate);
+const Areas = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p'];
+
+Start.addEventListener('click',propogate);
 
 propogate = function () {
-  
+  let mixedAreas = Shuffler.shuff(Areas);
+  for (i in Deck) {
+    i.setAttribute('grid-area',mixedAreas.shift());
+  }
 };
 
-shuffler = function (arr) {
-  
-};
+const Shuffler = require('./shuff.js');
