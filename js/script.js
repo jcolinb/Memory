@@ -11,44 +11,16 @@ const GM    = {
     for (a in Deck) {
         if (Deck[a].resolved !== 'yes') {
           Cards[Deck[a].index].textContent = "";
-          Cards[Deck[a].index].classList.toggle('hidden');
+          Cards[Deck[a].index].classList.remove('revealed');
           }
     }
-  }
-};
-
-const Clone = function (arr) {
-  let a = arr;
-  let b = [];
-
-  for (i in a) {
-    b[i] = a[i];
-  }
-  return b;
-};
-
-const Shuff = function (arr) {
-  let a = Clone(arr);
-  let b = [];
-  for (i=a.length;i>0;i--) {
-    r = Math.floor(Math.random() * a.length);    
-    b.push(a[r]);
-    a.splice(r,1);
-  };
-  return b;
-};
-
-const Flip = function (e) {
-  if (e.target.id !== 'container')
-  {e.target.classList.toggle('hidden');}
-};
-
-propogate = function () {
+  },
+  deal: function () {
   console.log("propogating...");
   Board.innerHTML = "";
   
   let Hand = document.createDocumentFragment();
-  let mixedIcons = Shuff(Icons);
+  let mixedIcons = GM.shuffle(Icons);
   let areaAssign = Clone(Areas);
 
   console.log(mixedIcons);
@@ -63,8 +35,39 @@ propogate = function () {
   Board.appendChild(Hand);
   console.log(Deck);
   Cards = document.getElementsByClassName('card');
+},
+  flip: function (e) {
+  if ((e.target.id !== 'container') && !(e.target.classList.contains('revealed')))
+  {e.target.classList.add('revealed');}
+  new Promise((res,rej) => Board.addEventListener('click',res)).then(GM.flip);
+},
+  shuffle: function (arr) {
+  let a = Clone(arr);
+  let b = [];
+  for (i=a.length;i>0;i--) {
+    r = Math.floor(Math.random() * a.length);    
+    b.push(a[r]);
+    a.splice(r,1);
+  }
+  return b;
+}
+};  
+
+const Clone = function (arr) {
+  let a = arr;
+  let b = [];
+
+  for (i in a) {
+    b[i] = a[i];
+  }
+  return b;
 };
 
-start = () => new Promise((res,rej) => Start.addEventListener('click',res));
-start().then(propogate);
-Board.addEventListener('click',Flip);
+
+
+
+
+
+
+new Promise((res,rej) => Start.addEventListener('click',res)).then(GM.deal);
+new Promise((res,rej) => Board.addEventListener('click',res)).then(GM.flip);
