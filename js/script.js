@@ -1,13 +1,21 @@
 const Board = document.getElementById('container');
 const Start = document.getElementById('start');
-const Icons = ['A','A','B','B','C','C','D','D','E','E','F','F','H','H','I','I'];
+const Icons = ['ᨖ','ᨖ','B','B','C','C','D','D','E','E','F','F','H','H','I','I'];
 const Areas = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p'];
 const Deck  = {};
-
-const MakeCard = function (nom,val) {
-  
+var   Cards = undefined;
+const GM    = {
+  stack: [],
+  are_equal: function (a,b) {return (a == b)},
+  reset: function () {
+    for (a in Deck) {
+        if (Deck[a].resolved !== 'yes') {
+          Cards[Deck[a].index].textContent = "";
+          Cards[Deck[a].index].classList.toggle('hidden');
+          }
+    }
+  }
 };
-
 
 const Clone = function (arr) {
   let a = arr;
@@ -27,7 +35,7 @@ const Shuff = function (arr) {
     b.push(a[r]);
     a.splice(r,1);
   };
-  return b
+  return b;
 };
 
 const Flip = function (e) {
@@ -50,11 +58,13 @@ propogate = function () {
       card.setAttribute('style',`grid-area: ${areaAssign[a]}`);
       card.textContent = mixedIcons[a];
       Hand.appendChild(card);
-      Deck[areaAssign[a]] = {val:mixedIcons[a]};
+      Deck[areaAssign[a]] = {val:mixedIcons[a], resolved: "no", index:a};
     }
   Board.appendChild(Hand);
   console.log(Deck);
+  Cards = document.getElementsByClassName('card');
 };
 
-Start.addEventListener('click',propogate);
+start = () => new Promise((res,rej) => Start.addEventListener('click',res));
+start().then(propogate);
 Board.addEventListener('click',Flip);

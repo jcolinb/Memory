@@ -22,6 +22,8 @@
 }
 
 .card {
+    font-size: 3em;
+    color: #2e6cb8;
     background-color:#2e6cb8;    
     display: flex;
     align-items: center;
@@ -29,6 +31,6 @@
 }
 
 .hidden {
-    background-image:url("horizon.jpg");
+    background-color: grey;
 
 }
