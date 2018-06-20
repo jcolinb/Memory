@@ -45,13 +45,15 @@ propogate = function () {
 
   console.log(mixedIcons);
     for (a in areaAssign) {
-    card = document.createElement('div');
-    card.classList.add('card');
-    card.setAttribute('style',`grid-area: ${areaAssign[a]}`);
-    card.textContent = mixedIcons[a];
-    Hand.appendChild(card);
-  }
+      card = document.createElement('div');
+      card.classList.add('card');
+      card.setAttribute('style',`grid-area: ${areaAssign[a]}`);
+      card.textContent = mixedIcons[a];
+      Hand.appendChild(card);
+      Deck[areaAssign[a]] = {val:mixedIcons[a]};
+    }
   Board.appendChild(Hand);
+  console.log(Deck);
 };
 
 Start.addEventListener('click',propogate);
