@@ -2,6 +2,12 @@ const Board = document.getElementById('container');
 const Start = document.getElementById('start');
 const Icons = ['A','A','B','B','C','C','D','D','E','E','F','F','H','H','I','I'];
 const Areas = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p'];
+const Deck  = {};
+
+const MakeCard = function (nom,val) {
+  
+};
+
 
 const Clone = function (arr) {
   let a = arr;
@@ -32,16 +38,17 @@ const Flip = function (e) {
 propogate = function () {
   console.log("propogating...");
   Board.innerHTML = "";
+  
   let Hand = document.createDocumentFragment();
-  let mixedAreas = Shuff(Areas);
-  let I = Clone(Icons);
+  let mixedIcons = Shuff(Icons);
+  let areaAssign = Clone(Areas);
 
-  console.log(mixedAreas);
-    for (a in mixedAreas) {
+  console.log(mixedIcons);
+    for (a in areaAssign) {
     card = document.createElement('div');
     card.classList.add('card');
-    card.setAttribute('style',`grid-area: ${mixedAreas[a]}`);
-    card.textContent = I[a];
+    card.setAttribute('style',`grid-area: ${areaAssign[a]}`);
+    card.textContent = mixedIcons[a];
     Hand.appendChild(card);
   }
   Board.appendChild(Hand);
