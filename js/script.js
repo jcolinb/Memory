@@ -18,6 +18,8 @@ const GM    = {
           }      
     }
     GM.stack=[];
+    GM.moves++;
+    moves.textContent = `${GM.moves}`;
     new Promise((res,rej) => Board.addEventListener('click',res)).then(GM.flip);
   },
 
@@ -56,8 +58,6 @@ const GM    = {
   },
 
   judge: function (e) {
-    GM.moves++;
-    moves.textContent = `${GM.moves}`;
     if ((e.target.classList.contains( 'card')) && (e.target !== GM.stack[0])) {
       e.target.classList.add('revealed');
       e.target.textContent = Deck[e.target.style.gridColumnEnd].val;
