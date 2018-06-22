@@ -1,4 +1,5 @@
 body {
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,9 +9,6 @@ body {
 
 #control {
     width: 40vw;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5px;
     margin-bottom: 10px;
     display: flex;
     justify-content: space-around;
@@ -20,8 +18,6 @@ body {
     width: 40vw;
     height: 40vw;
     padding: 10px;
-    margin-left: auto;
-    margin-right: auto;
     background-color: pink;
     border-radius: 8px;
     display: grid;
