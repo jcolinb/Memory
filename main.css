@@ -11,6 +11,8 @@
     margin-right: auto;
     background-color: #0bfff1;
     display: grid;
+    user-select: none;
+    -moz-user-select: none;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
     grid-gap: 10px;
@@ -23,11 +25,13 @@
 
 .card {
     font-size: 3em;
-    color: #2e6cb8;
-    background-color:#2e6cb8;    
+    color: black;
+    background-color: black;    
     display: flex;
     align-items: center;
     justify-content: center;
+    user-select: none;
+    -moz-user-select: none;
 }
 
 .revealed {

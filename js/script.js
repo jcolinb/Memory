@@ -1,12 +1,13 @@
 const Board = document.getElementById('container');
 const Start = document.getElementById('start');
+const Moves = document.getElementById('moves');
 const Icons = ['ᨖ','ᨖ','B','B','C','C','D','D','E','E','F','F','H','H','I','I'];
 const Areas = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p'];
 const Deck  = {};
 var   Cards = undefined;
 const GM    = {
   stack: [],
-
+  moves: 0,
   are_equal: function (a,b) {return (a == b)},
 
   reset: function () {
@@ -55,6 +56,8 @@ const GM    = {
   },
 
   judge: function (e) {
+    GM.moves++;
+    moves.textContent = `${GM.moves}`;
     if ((e.target.classList.contains( 'card')) && (e.target !== GM.stack[0])) {
       e.target.classList.add('revealed');
       e.target.textContent = Deck[e.target.style.gridColumnEnd].val;
