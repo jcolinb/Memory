@@ -12,10 +12,12 @@ const GM    = {
 
   reset: function () {
     for (a in Deck) {
-        if (Deck[a].resolved !== 'yes') {
-          Cards[Deck[a].index].textContent = "";
-          Cards[Deck[a].index].classList.remove('revealed');
-          }      
+      Cards[Deck[a].index].classList.remove('animated');
+      if (Deck[a].resolved !== 'yes') {
+        Cards[Deck[a].index].textContent = "";
+        Cards[Deck[a].index].classList.remove('revealed');
+
+      }      
     }
     GM.stack=[];
     GM.moves++;
@@ -72,6 +74,8 @@ const GM    = {
       Deck[a.style.gridColumnEnd].resolved = 'yes';
       Deck[b.style.gridColumnEnd].resolved = 'yes';
     }
+    a.classList.add('animated');
+    b.classList.add('animated');
     setTimeout(GM.reset,1000);
     }      
     else {

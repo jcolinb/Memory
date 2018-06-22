@@ -1,0 +1,7 @@
+@keyframes flub {
+    0%   {font-size: 2em;}
+    25%  {font-size: 2.5em;}
+    50%  {font-size: 2em;}
+    75%  {font-size: 3em;}
+    100% {font-size: 2em}
+}
