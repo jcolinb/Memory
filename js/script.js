@@ -16,7 +16,6 @@ const GM    = {
       if (Deck[a].resolved !== 'yes') {
         Cards[Deck[a].index].textContent = "";
         Cards[Deck[a].index].classList.remove('revealed');
-
       }      
     }
     GM.stack=[];
@@ -65,18 +64,20 @@ const GM    = {
 
   judge: function (e) {
     if ((e.target.classList.contains( 'card')) && (e.target !== GM.stack[0]) && !(e.target.classList.contains( 'revealed'))) {
-      e.target.classList.add('revealed');
-      e.target.textContent = Deck[e.target.style.gridColumnEnd].val;
+      let a = e.target;
+      let b = GM.stack[0];
 
-    let a = e.target;
-    let b = GM.stack[0];
-    if (GM.are_equal(a.textContent,b.textContent)) {
-      Deck[a.style.gridColumnEnd].resolved = 'yes';
-      Deck[b.style.gridColumnEnd].resolved = 'yes';
-    }
-    a.classList.add('animated');
-    b.classList.add('animated');
-    setTimeout(GM.reset,1000);
+      a.classList.add('revealed');
+      a.textContent = Deck[e.target.style.gridColumnEnd].val;
+
+
+      a.classList.add('animated');
+      b.classList.add('animated');
+      if (GM.are_equal(a.textContent,b.textContent)) {
+        Deck[a.style.gridColumnEnd].resolved = 'yes';
+        Deck[b.style.gridColumnEnd].resolved = 'yes';
+      }
+      setTimeout(GM.reset,1000);
     }      
     else {
     new Promise((res,rej) => Board.addEventListener('click',res)).then(GM.judge);
@@ -105,6 +106,4 @@ const Clone = function (arr) {
   return b;
 };
 
-GM.deal();
-
-
+new Promise((res,rej) => Start.addEventListener('click',res)).then(GM.deal);
