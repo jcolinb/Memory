@@ -42,10 +42,14 @@ const GM    = {
   Board.appendChild(Hand);
   console.log(Deck);
   Cards = document.getElementsByClassName('card');
+    GM.moves = 0;
+    moves.textContent = `${GM.moves}`;
+    new Promise((res,rej) => Start.addEventListener('click',res)).then(GM.deal);
+    new Promise((res,rej) => Board.addEventListener('click',res)).then(GM.flip);
   },
 
   flip: function (e) {
-  if (e.target.classList.contains( 'card')) {
+  if ((e.target.classList.contains( 'card')) && !(e.target.classList.contains( 'revealed')) ) {
     e.target.classList.add('revealed');
     e.target.textContent = Deck[e.target.style.gridColumnEnd].val;
     GM.stack.push(e.target);
@@ -58,7 +62,7 @@ const GM    = {
   },
 
   judge: function (e) {
-    if ((e.target.classList.contains( 'card')) && (e.target !== GM.stack[0])) {
+    if ((e.target.classList.contains( 'card')) && (e.target !== GM.stack[0]) && !(e.target.classList.contains( 'revealed'))) {
       e.target.classList.add('revealed');
       e.target.textContent = Deck[e.target.style.gridColumnEnd].val;
 
@@ -97,5 +101,6 @@ const Clone = function (arr) {
   return b;
 };
 
-new Promise((res,rej) => Start.addEventListener('click',res)).then(GM.deal);
-new Promise((res,rej) => Board.addEventListener('click',res)).then(GM.flip);
+GM.deal();
+
+
