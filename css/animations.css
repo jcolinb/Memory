@@ -5,3 +5,9 @@
     75%  {font-size: 3em;}
     100% {font-size: 2em}
 }
+
+@keyframes pulse {
+    0%    {background-color: #c3c4ca;}
+    50%   {background-color: #666c87;}
+    100%  {background-color: #c3c4ca;}
+}

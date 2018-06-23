@@ -66,7 +66,7 @@ body {
 }
 
 .modal {
-    background-color: #c3c4ca;
+    animation: pulse 5s infinite;
     border-radius: 8px;
     grid-column: 2 / 4;
     grid-row: 2 / 4;
