@@ -45,6 +45,23 @@ const GM    = {
     }
     else {
       Board.innerHTML = "";
+      document.getElementById('control').style.display = 'none';
+      let modal = document.createElement('div');
+      modal.classList.add('modal');
+      let moves = document.createElement('p');
+      moves.textContent = `MOVES: ${GM.moves}`;
+      moves.style.border = '1px solid black';
+      moves.style.borderRadius = '3px';
+      moves.style.padding = '2px';
+      modal.appendChild(moves);
+      let time = document.createElement('p');
+      time.textContent = `TIME: ${GM.secs}`;
+      time.style.border = '1px solid black';
+      time.style.borderRadius = '3px';
+      time.style.padding = '2px';
+      modal.appendChild(time);
+      modal.appendChild(Start);
+      Board.appendChild(modal);
     }
   },
 
