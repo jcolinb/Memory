@@ -22,17 +22,22 @@ const GM    = {
   are_equal: function (a,b) {return (a == b)},
 
   reset: function () {
-    for (a in Deck) {
-      Cards[Deck[a].index].classList.remove('animated');
-      if (Deck[a].resolved !== 'yes') {
-        Cards[Deck[a].index].textContent = "";
-        Cards[Deck[a].index].classList.remove('revealed');
-      }      
+    if (GM.matches < 8) {
+      for (a in Deck) {
+        Cards[Deck[a].index].classList.remove('animated');
+        if (Deck[a].resolved !== 'yes') {
+          Cards[Deck[a].index].textContent = "";
+          Cards[Deck[a].index].classList.remove('revealed');
+        }      
+      }
+      GM.stack=[];
+      GM.moves++;
+      moves.textContent = `${GM.moves}`;
+      new Promise((res,rej) => Board.addEventListener('click',res)).then(GM.flip);
     }
-    GM.stack=[];
-    GM.moves++;
-    moves.textContent = `${GM.moves}`;
-    new Promise((res,rej) => Board.addEventListener('click',res)).then(GM.flip);
+    else {
+      Board.innerHTML = "";
+    }
   },
 
   deal: function () {
@@ -87,6 +92,7 @@ const GM    = {
       if (GM.are_equal(a.textContent,b.textContent)) {
         Deck[a.style.gridColumnEnd].resolved = 'yes';
         Deck[b.style.gridColumnEnd].resolved = 'yes';
+        GM.matches++;
       }
       setTimeout(GM.reset,1000);
     }      
