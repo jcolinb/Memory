@@ -9,17 +9,20 @@ body {
 
 #control {
     width: 40vw;
-    margin-bottom: 10px;
+    background: linear-gradient(-55deg,#666c87,#cc5545);
+    box-shadow: 10px 10px 15px 0px black;
+    margin-bottom: 20px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 #container {
     width: 40vw;
     height: 40vw;
     padding: 10px;
-    background-color: pink;
+    background: linear-gradient(55deg,#666c87,#cc5545);
     border-radius: 8px;
+    box-shadow: 10px 10px 15px 0px black;
     display: grid;
     user-select: none;
     -moz-user-select: none;
@@ -35,9 +38,10 @@ body {
 
 .card {
     font-size: 2em;
-    color: black;
-    background-color: black;
+    color: #93959a;
+    background-color: pink;
     border-radius: 4px;
+    box-shadow: 5px 5px 10px 0px black;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -46,7 +50,7 @@ body {
 }
 
 .revealed {
-    background-color: grey;
+    background-color: #c3c4ca;
 }
 
 .animated {
