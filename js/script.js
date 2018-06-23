@@ -126,7 +126,9 @@ const Clone = function (arr) {
 const Tick = function () {
   GM.secs++;
   Clock.textContent = `${GM.secs}`;
-  setTimeout(Tick,1000);
+  if (GM.matches < 8) {
+    setTimeout(Tick,1000);
+  }
 };
 
 GM.deal();
