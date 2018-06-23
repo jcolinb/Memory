@@ -2,7 +2,7 @@ const Board = document.getElementById('container');
 const Start = document.getElementById('start');
 const Moves = document.getElementById('moves');
 const Clock = document.getElementById('timer');
-
+const Rate  = document.getElementById('rate');
 const Icons = ['ᨖ','ᨖ','B','B','C','C','D','D','E','E','F','F','H','H','I','I'];
 const Areas = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p'];
 
@@ -41,6 +41,14 @@ const GM    = {
       GM.stack=[];
       GM.moves++;
       moves.textContent = `${GM.moves}`;
+      if(GM.moves > 12) {
+        if (GM.moves < 16) {
+          Rate.textContent = "☆☆";
+        }
+        else {
+          Rate.textContent = "☆";
+        }
+      } 
       new Promise((res,rej) => Board.addEventListener('click',res)).then(GM.flip);
     }
     else {
@@ -48,6 +56,10 @@ const GM    = {
       document.getElementById('control').style.display = 'none';
       let modal = document.createElement('div');
       modal.classList.add('modal');
+      let congrats = document.createElement('p');
+      congrats.textContent = "Congratulations!";
+      modal.appendChild(congrats);
+      modal.appendChild(Rate);
       let moves = document.createElement('p');
       moves.textContent = `MOVES: ${GM.moves}`;
       moves.style.border = '1px solid black';

@@ -17,7 +17,7 @@ body {
     justify-content: space-evenly;
 }
 
-#start,#move,#time {
+#start,#move,#time,#rate {
     background: linear-gradient(55deg,#666c87,#cc5545);
     color: #c9efdf;
     padding: 3px;
