@@ -5,6 +5,9 @@ const Icons = ['ᨖ','ᨖ','B','B','C','C','D','D','E','E','F','F','H','H','I','
 const Areas = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p'];
 const Deck  = {};
 var   Cards = undefined;
+
+Start.addEventListener('click',function() {location.reload();});
+
 const GM    = {
   stack: [],
   moves: 0,
@@ -45,7 +48,6 @@ const GM    = {
   Cards = document.getElementsByClassName('card');
     GM.moves = 0;
     moves.textContent = `${GM.moves}`;
-    new Promise((res,rej) => Start.addEventListener('click',res)).then(GM.deal);
     new Promise((res,rej) => Board.addEventListener('click',res)).then(GM.flip);
   },
 
@@ -106,4 +108,4 @@ const Clone = function (arr) {
   return b;
 };
 
-new Promise((res,rej) => Start.addEventListener('click',res)).then(GM.deal);
+GM.deal();
