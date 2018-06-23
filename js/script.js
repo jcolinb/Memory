@@ -34,7 +34,8 @@ const GM    = {
         if (Deck[a].resolved !== 'yes') {
           Cards[Deck[a].index].textContent = "";
           Cards[Deck[a].index].classList.remove('revealed');
-        }      
+        }
+        else {Cards[Deck[a].index].style.color = 'green';}
       }
 
       GM.stack=[];
@@ -87,6 +88,7 @@ const GM    = {
   judge: function (e) {
 
     if ((e.target.classList.contains( 'card')) && (e.target !== GM.stack[0]) && !(e.target.classList.contains( 'revealed'))) {
+
       let a = e.target;
       let b = GM.stack[0];
       
