@@ -1,6 +1,7 @@
 const Board = document.getElementById('container');
 const Start = document.getElementById('start');
 const Moves = document.getElementById('moves');
+const Clock = document.getElementById('timer');
 const Icons = ['ᨖ','ᨖ','B','B','C','C','D','D','E','E','F','F','H','H','I','I'];
 const Areas = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p'];
 const Deck  = {};
@@ -9,8 +10,15 @@ var   Cards = undefined;
 Start.addEventListener('click',function() {location.reload();});
 
 const GM    = {
+
   stack: [],
+
+  matches: 0,
+
   moves: 0,
+
+  secs: 0,
+
   are_equal: function (a,b) {return (a == b)},
 
   reset: function () {
@@ -48,6 +56,7 @@ const GM    = {
   Cards = document.getElementsByClassName('card');
     GM.moves = 0;
     moves.textContent = `${GM.moves}`;
+    Tick();
     new Promise((res,rej) => Board.addEventListener('click',res)).then(GM.flip);
   },
 
@@ -106,6 +115,12 @@ const Clone = function (arr) {
     b[i] = a[i];
   }
   return b;
+};
+
+const Tick = function () {
+  GM.secs++;
+  Clock.textContent = `${GM.secs}`;
+  setTimeout(Tick,1000);
 };
 
 GM.deal();
