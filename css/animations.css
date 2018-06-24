@@ -11,3 +11,9 @@
     50%   {background-color: #666c87;}
     100%  {background-color: #c3c4ca;}
 }
+
+@keyframes spin-in {
+    0%   {transform: rotate(-180deg); height: 1vw; width: 1vw;}
+    50%  {transform: rotate(0deg); height: 20vw; width: 20vw;}
+    100% {height: 40vw; width: 40vw;}
+}

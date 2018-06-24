@@ -85,6 +85,7 @@ const GM    = {
     let mixedIcons = GM.shuffle(Icons);
     let areaAssign = Clone(Areas);
     
+    Board.style.animation = "spin-in 6s linear"
     for (a in areaAssign) {
       card = document.createElement('div');
       card.classList.add('card');
