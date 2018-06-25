@@ -54,10 +54,10 @@ const GM    = {
       document.getElementById('control').style.display = 'none';
       let modal = document.createElement('div');
       modal.classList.add('modal');
-      let congrats = document.createElement('h3');
+      let congrats = document.createElement('h4');
       congrats.textContent = "Congratulations!";
       modal.appendChild(congrats);
-      let rate = document.createElement('h3');
+      let rate = document.createElement('h4');
       rate.textContent = Rate.textContent;
       modal.appendChild(rate);
       let moves = document.createElement('p');

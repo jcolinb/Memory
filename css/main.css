@@ -74,6 +74,7 @@ body {
 .modal {
     animation: pulse 5s infinite;
     color: #ed6ae4;
+    font-size: 1.25em;
     border-radius: 8px;
     grid-column: 2 / 4;
     grid-row: 2 / 4;
@@ -84,7 +85,7 @@ body {
     box-shadow: 5px 5px 5px 0px black;
 }
 
-p,h3 {
+p,h4 {
     margin: 0px;
 }
 
