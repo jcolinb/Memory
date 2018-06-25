@@ -7,4 +7,12 @@
     #control {
         width: 85vw;
     }
+
+    .modal {
+        font-size: 1em;
+    }
+
+    #start {
+        font-size: 1em;
+    }
 }
