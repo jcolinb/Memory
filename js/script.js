@@ -9,8 +9,6 @@ const Areas = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p'];
 const Deck  = {};
 var   Cards = undefined;
 
-Start.addEventListener('click',function() {location.reload();});
-
 const GM    = {
 
   stack: [],
@@ -35,7 +33,7 @@ const GM    = {
           Cards[Deck[a].index].textContent = "";
           Cards[Deck[a].index].classList.remove('revealed');
         }
-        else {Cards[Deck[a].index].style.color = 'green';}
+        else {Cards[Deck[a].index].style.color = '#44e532';}
       }
 
       GM.stack=[];
@@ -56,36 +54,47 @@ const GM    = {
       document.getElementById('control').style.display = 'none';
       let modal = document.createElement('div');
       modal.classList.add('modal');
-      let congrats = document.createElement('p');
+      let congrats = document.createElement('h3');
       congrats.textContent = "Congratulations!";
       modal.appendChild(congrats);
-      modal.appendChild(Rate);
+      let rate = document.createElement('h3');
+      rate.textContent = Rate.textContent;
+      modal.appendChild(rate);
       let moves = document.createElement('p');
       moves.textContent = `MOVES: ${GM.moves}`;
-      moves.style.border = '1px solid black';
+      moves.style.border = '1px solid #ed6ae4';
       moves.style.borderRadius = '3px';
       moves.style.padding = '2px';
       modal.appendChild(moves);
       let time = document.createElement('p');
       time.textContent = `TIME: ${GM.secs}`;
-      time.style.border = '1px solid black';
+      time.style.border = '1px solid #ed6ae4';
       time.style.borderRadius = '3px';
       time.style.padding = '2px';
       modal.appendChild(time);
+      Start.classList.remove('hidden');
       modal.appendChild(Start);
       Board.appendChild(modal);
+      new Promise((res,rej) => Start.addEventListener('click',res)).then(GM.deal);
     }
   },
 
   deal: function () {
 
     Board.innerHTML = "";
-    
+    document.getElementById('control').style.display = 'flex';
+    GM.stack = [];
+    GM.moves = 0;
+    GM.matches = 0;
+    GM.secs = 0;
+    Rate.textContent = "☆☆☆";
+
+    Start.classList.add('hidden');
+
     let Hand = document.createDocumentFragment();
     let mixedIcons = GM.shuffle(Icons);
     let areaAssign = Clone(Areas);
     
-    Board.style.animation = "spin-in 6s linear"
     for (a in areaAssign) {
       card = document.createElement('div');
       card.classList.add('card');
@@ -174,4 +183,4 @@ const Tick = function () {
   }
 };
 
-GM.deal();
+new Promise((res,rej) => Start.addEventListener('click',res)).then(GM.deal);

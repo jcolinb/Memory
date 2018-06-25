@@ -4,12 +4,14 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: repeating-linear-gradient(45deg,white,white 10px,black,black 20px);
+    background: repeating-linear-gradient(45deg,#8280b7,#c3c4ca 10px,black,black 20px);
 }
 
 #control {
     width: 40vw;
-    background: linear-gradient(-55deg,#666c87,#cc5545);
+    background-color: #514f84;
+    color: #ed6ae4;
+    font-size: 1.5em;
     box-shadow: 10px 10px 15px 0px black;
     margin-bottom: 20px;
     padding: 5px;
@@ -17,18 +19,22 @@ body {
     justify-content: space-evenly;
 }
 
-#start,#move,#time,#rate {
-    background: linear-gradient(55deg,#666c87,#cc5545);
-    color: #c9efdf;
+#start {
+    background-color: #c3c4ca;
+    color: #ed6ae4;
+    font-size: 1.5em;
     padding: 3px;
-    border-radius: 10px;
+    border-radius: 5px;
+    grid-column: 2 / 4;
+    grid-row: 2 / 4;
+
 }
 
 #container {
     width: 40vw;
     height: 40vw;
     padding: 10px;
-    background: linear-gradient(55deg,#666c87,#cc5545);
+    background: linear-gradient(55deg,#c3c4ca,#514f84);
     border-radius: 8px;
     box-shadow: 10px 10px 15px 0px black;
     display: grid;
@@ -46,8 +52,8 @@ body {
 
 .card {
     font-size: 2.5em;
-    color: #93959a;
-    background-color: pink;
+    color: #ed6ae4;
+    background-color: #42415e;
     border-radius: 4px;
     box-shadow: 5px 5px 10px 0px black;
     display: flex;
@@ -67,6 +73,7 @@ body {
 
 .modal {
     animation: pulse 5s infinite;
+    color: #ed6ae4;
     border-radius: 8px;
     grid-column: 2 / 4;
     grid-row: 2 / 4;
@@ -75,4 +82,12 @@ body {
     justify-content: space-evenly;
     align-items: center;
     box-shadow: 5px 5px 5px 0px black;
+}
+
+p,h3 {
+    margin: 0px;
+}
+
+.hidden {
+    display: none;
 }
