@@ -1,16 +1,22 @@
+// get DOM elements
 const Board = document.getElementById('container');
 const Start = document.getElementById('start');
 const Moves = document.getElementById('moves');
 const Clock = document.getElementById('timer');
 const Rate  = document.getElementById('rate');
+
+// collections for populating game board
 const Icons = ['ᨖ','ᨖ','B','B','C','C','D','D','E','E','F','F','H','H','I','I'];
 const Areas = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p'];
 
+// initialize data structures for game-space
 const Deck  = {};
 var   Cards = undefined;
 
+// define "Game Master"; contains all gameplay functions
 const GM    = {
 
+  // properties for game state; initialized each deal
   stack: [],
 
   matches: 0,
@@ -19,23 +25,25 @@ const GM    = {
 
   secs: 0,
 
+  // simple compare function, called in .judge
   are_equal: function (a,b) {
 
     return (a == b)
   },
 
+  // function to reset gameboard between turns; checks for game completion and resolves end of game
   reset: function () {
 
-    if (GM.matches < 8) {
-      for (a in Deck) {
+    if (GM.matches < 8) { // if all cards aren't matched
+      for (a in Deck) { // reset all unresolved cards
         Cards[Deck[a].index].classList.remove('animated');
         if (Deck[a].resolved !== 'yes') {
           Cards[Deck[a].index].textContent = "";
           Cards[Deck[a].index].classList.remove('revealed');
         }
-        else {Cards[Deck[a].index].style.color = '#44e532';}
+        else {Cards[Deck[a].index].style.color = '#44e532';} // or change match green
       }
-
+      // update game-state
       GM.stack=[];
       GM.moves++;
       moves.textContent = `${GM.moves}`;
@@ -47,12 +55,12 @@ const GM    = {
           Rate.textContent = "☆";
         }
       } 
-      new Promise((res,rej) => Board.addEventListener('click',res)).then(GM.flip);
+      new Promise((res,rej) => Board.addEventListener('click',res)).then(GM.flip); // create Promise for new turn 
     }
-    else {
+    else { // endgame
       Board.innerHTML = "";
       document.getElementById('control').style.display = 'none';
-      let modal = document.createElement('div');
+      let modal = document.createElement('div'); // create congrats modal
       modal.classList.add('modal');
       let congrats = document.createElement('h4');
       congrats.textContent = "Congratulations!";
@@ -75,12 +83,14 @@ const GM    = {
       Start.classList.remove('hidden');
       modal.appendChild(Start);
       Board.appendChild(modal);
-      new Promise((res,rej) => Start.addEventListener('click',res)).then(GM.deal);
+      new Promise((res,rej) => Start.addEventListener('click',res)).then(GM.deal); // create Promise to start new game
     }
   },
 
+  // function to create data structures for game-space per game
   deal: function () {
 
+    // initialize game-space and game data
     Board.innerHTML = "";
     document.getElementById('control').style.display = 'flex';
     GM.stack = [];
@@ -95,12 +105,12 @@ const GM    = {
     let mixedIcons = GM.shuffle(Icons);
     let areaAssign = Clone(Areas);
     
-    for (a in areaAssign) {
+    for (a in areaAssign) { // create cards and add them to DOM
       card = document.createElement('div');
       card.classList.add('card');
       card.setAttribute('style',`grid-area: ${areaAssign[a]}`);
       Hand.appendChild(card);
-      Deck[areaAssign[a]] = {val:mixedIcons[a], resolved: "no", index:a};
+      Deck[areaAssign[a]] = {val:mixedIcons[a], resolved: "no", index:a}; // add created card to object, indexed by it's placement
     }
 
     Board.appendChild(Hand);
@@ -108,44 +118,49 @@ const GM    = {
     GM.moves = 0;
     moves.textContent = `${GM.moves}`;
     Tick();
-    new Promise((res,rej) => Board.addEventListener('click',res)).then(GM.flip);
+    new Promise((res,rej) => Board.addEventListener('click',res)).then(GM.flip); // create Promise to begin turn
   },
-  
+  // function resolving first card of a turn
   flip: function (e) {
 
-    if ((e.target.classList.contains( 'card')) && !(e.target.classList.contains( 'revealed')) ) {
+    if ((e.target.classList.contains( 'card')) && !(e.target.classList.contains( 'revealed')) ) { // check cards eligibility
       e.target.classList.add('revealed');
-      e.target.textContent = Deck[e.target.style.gridColumnEnd].val;
-      GM.stack.push(e.target);
-      new Promise((res,rej) => Board.addEventListener('click',res)).then(GM.judge);
+      e.target.textContent = Deck[e.target.style.gridColumnEnd].val; // retrieve it's text value from object
+      GM.stack.push(e.target); // store card for comparison in .judge
+      new Promise((res,rej) => Board.addEventListener('click',res)).then(GM.judge); // create Promise for second card of turn
     }
     else{
-      new Promise((res,rej) => Board.addEventListener('click',res)).then(GM.flip);
+      new Promise((res,rej) => Board.addEventListener('click',res)).then(GM.flip); // if card is ineligible, renew Promise
     }
   },
-  
+  // function resolving second card of a turn
   judge: function (e) {
 
+    // check card for eligibility
     if ((e.target.classList.contains( 'card')) && (e.target !== GM.stack[0]) && !(e.target.classList.contains( 'revealed'))) {
 
+      // bring in both cards as 'a' and 'b'
       let a = e.target;
       let b = GM.stack[0];
-      
+
+      // reveal second card
       a.classList.add('revealed');
       a.textContent = Deck[e.target.style.gridColumnEnd].val;
 
+      // animate both cards
       a.classList.add('animated');
       b.classList.add('animated');
       
-      if (GM.are_equal(a.textContent,b.textContent)) {
-        Deck[a.style.gridColumnEnd].resolved = 'yes';
+      if (GM.are_equal(a.textContent,b.textContent)) { // check for a match
+        // if they match, update the cards in the object
+        Deck[a.style.gridColumnEnd].resolved = 'yes'; 
         Deck[b.style.gridColumnEnd].resolved = 'yes';
         GM.matches++;
       }
-      setTimeout(GM.reset,1000);
+      setTimeout(GM.reset,1000); // pause for 1 sec and reset board for next turn
     }      
     else {
-      new Promise((res,rej) => Board.addEventListener('click',res)).then(GM.judge);
+      new Promise((res,rej) => Board.addEventListener('click',res)).then(GM.judge); // renew Promise for second card
     }
   },
   
