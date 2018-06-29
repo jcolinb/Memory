@@ -71,6 +71,10 @@ body {
     animation: flub 0.5s 1;
 }
 
+.animated-mobile {
+    animation: flub-mobile 0.5s 1;
+}
+
 .modal {
     animation: pulse 5s infinite;
     color: #fff;

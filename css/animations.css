@@ -2,8 +2,16 @@
     0%   {font-size: 2em;}
     25%  {font-size: 2.5em;}
     50%  {font-size: 2em;}
-    75%  {font-size: 3em;}
+    75%  {font-size: 2.5em;}
     100% {font-size: 2em}
+}
+
+@keyframes flub-mobile {
+    0%   {font-size: 1em;}
+    25%  {font-size: 1.5em;}
+    50%  {font-size: 1em;}
+    75%  {font-size: 1.5em;}
+    100% {font-size: 1em}
 }
 
 @keyframes pulse {

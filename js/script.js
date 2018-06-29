@@ -36,7 +36,13 @@ const GM    = {
 
     if (GM.matches < 8) { // if all cards aren't matched
       for (a in Deck) { // reset all unresolved cards
-        Cards[Deck[a].index].classList.remove('animated');
+        if (window.matchMedia("(orientation: landscape)").matches) {
+          Cards[Deck[a].index].classList.remove('animated-mobile');
+        }
+        else {
+          Cards[Deck[a].index].classList.remove('animated');
+        }
+
         if (Deck[a].resolved !== 'yes') {
           Cards[Deck[a].index].textContent = "";
           Cards[Deck[a].index].classList.remove('revealed');
@@ -149,9 +155,15 @@ const GM    = {
       a.textContent = Deck[e.target.style.gridColumnEnd].val;
 
       // animate both cards
-      a.classList.add('animated');
-      b.classList.add('animated');
-      
+      if (window.matchMedia("(orientation: landscape)").matches) {
+        a.classList.add('animated-mobile');
+        b.classList.add('animated-mobile');
+      }
+      else {
+        a.classList.add('animated');
+        b.classList.add('animated');
+      }
+
       if (GM.are_equal(a.textContent,b.textContent)) { // check for a match
         // if they match, update the cards in the object
         Deck[a.style.gridColumnEnd].resolved = 'yes'; 
