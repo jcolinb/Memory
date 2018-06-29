@@ -8,6 +8,10 @@
         width: 85vw;
     }
 
+    .card {
+        font-size: 1.5em;
+    }
+
     .modal {
         font-size: 0.5em;
     }
@@ -24,7 +28,11 @@
     }
 
     #control {
-        width: 40vw;
+        width: 60vw;
+    }
+
+    .card {
+        font-size: 1em;
     }
 
     .modal {
