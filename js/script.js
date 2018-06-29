@@ -81,6 +81,7 @@ const GM    = {
       time.style.padding = '2px';
       modal.appendChild(time);
       Start.classList.remove('hidden');
+      Start.textContent = 'Play Again?';
       modal.appendChild(Start);
       Board.appendChild(modal);
       new Promise((res,rej) => Start.addEventListener('click',res)).then(GM.deal); // create Promise to start new game
