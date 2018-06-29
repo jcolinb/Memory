@@ -55,7 +55,7 @@ const GM    = {
           Rate.textContent = "☆";
         }
       } 
-      new Promise((res,rej) => Board.addEventListener('click',res)).then(GM.flip); // create Promise for new turn 
+      new Promise((res,rej) => Board.addEventListener('click',res)).then(GM.flip); // create Promise for new turn
     }
     else { // endgame
       Board.innerHTML = "";
@@ -171,13 +171,13 @@ const GM    = {
     let b = [];
 
     for (i=a.length;i>0;i--) {
-      r = Math.floor(Math.random() * a.length);    
+      r = Math.floor(Math.random() * a.length);
       b.push(a[r]);
       a.splice(r,1);
     }
     return b;
   }
-};  
+};
 
 // helper functions
 const Clone = function (arr) { // clone an array to preserve data that should stay immutable
