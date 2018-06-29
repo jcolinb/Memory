@@ -160,11 +160,11 @@ const GM    = {
       setTimeout(GM.reset,1000); // pause for 1 sec and reset board for next turn
     }      
     else {
-      new Promise((res,rej) => Board.addEventListener('click',res)).then(GM.judge); // renew Promise for second card
+      new Promise((res,rej) => Board.addEventListener('click',res)).then(GM.judge); // or, renew Promise for second card
     }
   },
   
-  shuffle: function (arr) {
+  shuffle: function (arr) { // function to shuffle array; used in .deal
 
     let a = Clone(arr);
     let b = [];
@@ -178,7 +178,8 @@ const GM    = {
   }
 };  
 
-const Clone = function (arr) {
+// helper functions
+const Clone = function (arr) { // clone an array to preserve data that should stay immutable
 
   let a = arr;
   let b = [];
@@ -189,7 +190,7 @@ const Clone = function (arr) {
   return b;
 };
 
-const Tick = function () {
+const Tick = function () { // increment the game clock and update the DOM
 
   GM.secs++;
   Clock.textContent = `${GM.secs}`;
@@ -198,4 +199,4 @@ const Tick = function () {
   }
 };
 
-new Promise((res,rej) => Start.addEventListener('click',res)).then(GM.deal);
+new Promise((res,rej) => Start.addEventListener('click',res)).then(GM.deal); // create Promise to start game
