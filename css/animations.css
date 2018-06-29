@@ -7,11 +7,11 @@
 }
 
 @keyframes flub-mobile {
-    0%   {font-size: 1em;}
-    25%  {font-size: 1.5em;}
-    50%  {font-size: 1em;}
-    75%  {font-size: 1.5em;}
-    100% {font-size: 1em}
+    0%   {font-size: 1.5em;}
+    25%  {font-size: 2em;}
+    50%  {font-size: 1.5em;}
+    75%  {font-size: 2em;}
+    100% {font-size: 1.5em}
 }
 
 @keyframes pulse {
