@@ -1,4 +1,4 @@
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 800px) and (orientation: portrait) {
     #container {
         width: 85vw;
         height: 85vw;
@@ -6,6 +6,25 @@
 
     #control {
         width: 85vw;
+    }
+
+    .modal {
+        font-size: 0.5em;
+    }
+
+    #start {
+        font-size: 1em;
+    }
+}
+
+@media screen and (max-width: 800px) and (orientation: landscape) {
+    #container {
+        width: 40vw;
+        height: 40vw;
+    }
+
+    #control {
+        width: 40vw;
     }
 
     .modal {
