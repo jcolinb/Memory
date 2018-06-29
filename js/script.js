@@ -6,7 +6,7 @@ const Clock = document.getElementById('timer');
 const Rate  = document.getElementById('rate');
 
 // collections for populating game board
-const Icons = ['ᨖ','ᨖ','B','B','C','C','D','D','E','E','F','F','H','H','I','I'];
+const Icons = ['ᨖ','ᨖ','Δ','Δ','೦','೦','྿','྿','ჶ','ჶ','፨','፨','ᚸ','ᚸ','ᜁ','ᜁ'];
 const Areas = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p'];
 
 // initialize data structures for game-space
